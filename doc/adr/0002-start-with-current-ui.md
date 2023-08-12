@@ -14,7 +14,7 @@ There is already a lot of UI that comes with [the existing Mastodon server](http
 
 The change that we're proposing or have agreed to implement.
 
-### Clone source and check for js files
+### Clone source and check for js and related files
 
 ```
 find . -name "*.js" -o -name "*.ts" -not -path "./directory/*" | wc -l
@@ -35,6 +35,12 @@ find . -name "_.js" -o -name "_.ts" | wc -l
 ```
 ~/sauce/mastodon$ find -name "*.ts" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
 ~/sauce/mastodon$ find -name "*.js" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.jsx" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.tsx" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.css" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.scss" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.png" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.svg" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
 ```
 
 ```

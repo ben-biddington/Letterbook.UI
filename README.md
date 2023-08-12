@@ -92,3 +92,5 @@ See the typescript-eslint docs for more info: https://typescript-eslint.io/linti
   5:26  error  Unable to resolve path to module 'mastodon/components/dropdown_menu'                                       import/no-unresolved
 
 ```
+
+Try deleting `.eslintcache`.
