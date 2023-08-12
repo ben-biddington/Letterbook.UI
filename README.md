@@ -1,3 +1,5 @@
+Designed to go with [Letterbook server](https://github.com/Letterbook/Letterbook), this is just the frontend code from [Mastodon](https://github.com/mastodon/mastodon).
+
 # Installation
 
 ```
