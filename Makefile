@@ -18,3 +18,9 @@ test: typecheck
 
 webpack: 
 	NODE_ENV=development webpack --config ./config/webpack/development.js
+
+server-build:
+	./letterbook-ui/scripts/server/build
+
+server-start:
+	./letterbook-ui/scripts/server/start

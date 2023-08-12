@@ -1,0 +1,44 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.10",
+    "@babel/plugin-transform-typescript": "^7.22.10",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "express": "^4.18.2"
+  },
+  "babel": {
+    "ignore": [
+      "node_modules",
+      "dist"
+    ],
+    "presets": [
+      "@babel/preset-typescript",
+      [
+        "@babel/preset-env",
+        {
+          "modules": "commonjs"
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "module-resolver",
+        {
+          "root": [
+            "."
+          ]
+        }
+      ]
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+cd letterbook-ui/tools/server
+
+npm ci
+
+if [ ! -d "dist" ]; then
+  mkdir dist
+fi
+
+npx babel . --out-dir dist --extensions .'ts' --ignore node_modules dist
+
+cp home.html dist
+cp -r templates dist
+
+cd -
