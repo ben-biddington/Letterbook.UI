@@ -15,7 +15,7 @@ npm test
 ## Build for web
 
 ```
-webpack ./config/webpack/development.js
+NODE_ENV=development webpack --config ./config/webpack/development.js
 ```
 
 ## Errors
