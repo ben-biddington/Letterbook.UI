@@ -33,7 +33,13 @@ find . -name "_.js" -o -name "_.ts" | wc -l
 ### Copy them over with their tree
 
 ```
-find -name "*.js" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.ts" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+~/sauce/mastodon$ find -name "*.js" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+```
+
+```
+~/sauce/LetterBox.UI$ find . -name \*.ts -o -name "\*.js" | wc -l
+232
 ```
 
 ### cp: cannot stat './public/sw.js': No such file or directory
@@ -46,8 +52,4 @@ That file is a symlink. Use `-d`.
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
-
-```
-
-```
+This allows starting with all (we hope) of the current frontend source.
