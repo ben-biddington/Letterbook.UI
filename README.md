@@ -8,6 +8,16 @@ nvm install `cat .nvmrc`
 npm i
 ```
 
+```
+npm test
+```
+
+## Build for web
+
+```
+webpack ./config/webpack/development.js
+```
+
 ## Errors
 
 ### Could not resolve dependency ... peer react@"^0.14.0 || ^15.0.0-0 || ^16.0.0 || ^17.0.0" from emoji-mart@3.0.1-j
@@ -94,3 +104,98 @@ See the typescript-eslint docs for more info: https://typescript-eslint.io/linti
 ```
 
 Try deleting `.eslintcache`.
+
+### Error: spawn ./bin/webpack ENOENT
+
+```
+ben@bang:~/sauce/Letterbook.UI$ npm run build:development
+
+> build:development
+> cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack
+
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: spawn ./bin/webpack ENOENT
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:285:19)
+    at onErrorNT (node:internal/child_process:485:16)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+Emitted 'error' event on ChildProcess instance at:
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:291:12)
+    at onErrorNT (node:internal/child_process:485:16)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'spawn ./bin/webpack',
+  path: './bin/webpack',
+  spawnargs: []
+}
+
+```
+
+Tried:
+
+```
+cp ../mastodon/bin/webpack bin/
+```
+
+But `webpack` is made in Ruby.
+
+```
+npm run build:development
+
+> build:development
+> cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack
+
+Could not find puma-6.3.0 in any of the sources
+Run `bundle install` to install missing gems.
+
+```
+
+```
+sudo apt install ruby-bundler
+```
+
+Resolved by running webpack with its own cli.
+
+### Error: Cannot find module 'webpack-cli/package.json'
+
+```
+webpack config/webpack/development.js
+```
+
+```
+Error: Cannot find module 'webpack-cli/package.json'
+Require stack:
+- /home/ben/.nvm/versions/node/v16.20.2/lib/node_modules/webpack/bin/webpack.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:1028:15)
+    at Function.resolve (node:internal/modules/cjs/helpers:125:19)
+    at runCli (/home/ben/.nvm/versions/node/v16.20.2/lib/node_modules/webpack/bin/webpack.js:78:26)
+    at /home/ben/.nvm/versions/node/v16.20.2/lib/node_modules/webpack/bin/webpack.js:178:5
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/ben/.nvm/versions/node/v16.20.2/lib/node_modules/webpack/bin/webpack.js'
+  ]
+}
+
+```
+
+Resolved by:
+
+```
+npm install -g webpack-cli
+```
+
+```
+webpack-cli] TypeError: Cannot read properties of undefined (reading 'getArguments')
+
+```
+
+Resolved by:
+
+```
+npm remove webpack webpack-cli --legacy-peer-deps
+npm install --save-dev webpack webpack-cli --legacy-peer-deps
+```
