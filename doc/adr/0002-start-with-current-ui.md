@@ -41,6 +41,10 @@ find . -name "_.js" -o -name "_.ts" | wc -l
 ~/sauce/mastodon$ find -name "*.scss" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
 ~/sauce/mastodon$ find -name "*.png" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
 ~/sauce/mastodon$ find -name "*.svg" -exec cp --parents \{\} -dt ~/sauce/LetterBox.UI/ \;
+
+cp -r app/javascript/ ../Letterbook.UI/app
+cp -r config/ ../Letterbook.UI
+
 ```
 
 ```
