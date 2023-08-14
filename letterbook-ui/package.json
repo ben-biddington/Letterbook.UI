@@ -36,7 +36,10 @@
         {
           "root": [
             "."
-          ]
+          ],
+          "alias": {
+            "letterbook-ui": "."
+          }
         }
       ]
     ]

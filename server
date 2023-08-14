@@ -1,1 +1,3 @@
-node letterbook-ui/tools/server/dist/index.js
+#!/bin/bash
+
+./letterbook-ui/scripts/server/start

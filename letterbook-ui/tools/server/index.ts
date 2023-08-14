@@ -1,20 +1,21 @@
-import express from 'express';
+import express, { Express } from 'express';
 import path from 'path';
 import fs from 'fs';
+import timelines from './endpoints/timelines';
 
-const app = express();
+const app: Express = express();
 
 const publicPath = path.resolve(path.join(__dirname, '../../../../public'));
-
-console.log({ publicPath });
 
 app.use(express.json());
 app.use(express.static(__dirname));
 app.use(express.static(publicPath));
 
+timelines(app);
+
 const portNumber = parseInt(process.env.PORT || '9999');
 
-app.get(/index/, async (req, res) => {
+app.get(/home/, async (req, res) => {
   const manifestPath = path.resolve(publicPath, 'packs', 'manifest.json');
 
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -42,7 +43,6 @@ app.get(/index/, async (req, res) => {
     )
     .replace('{application.js}', manifest['application.js'].src);
 
-  // https://docs.railway.app/databases/mongodb
   res.send(template);
 });
 

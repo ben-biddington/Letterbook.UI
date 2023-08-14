@@ -1,4 +1,4 @@
-cd letterbook-ui/tools/server
+cd letterbook-ui
 
 npm ci
 
@@ -8,7 +8,7 @@ fi
 
 npx babel . --out-dir dist --extensions .'ts' --ignore node_modules dist
 
-cp home.html dist
-cp -r templates dist
+cp tools/server/home.html dist/tools/server
+cp -r tools/server/templates dist/tools/server
 
 cd -
