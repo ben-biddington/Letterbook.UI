@@ -7,7 +7,7 @@ nvm install `cat .nvmrc`
 ```
 
 ```
-npm i
+npm i --legacy-peer-deps && npm install babel-cli -g --legacy-peer-deps
 ```
 
 ```
