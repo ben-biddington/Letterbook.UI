@@ -36,6 +36,8 @@ make server-build
 ./server
 ```
 
+[View in browser](http://localhost:9999/home).
+
 ## Troubleshooting
 
 ### Webpack does not build fully on Windows
