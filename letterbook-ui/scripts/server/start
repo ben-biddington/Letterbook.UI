@@ -1,1 +1,2 @@
+#!/bin/bash
 node letterbook-ui/dist/tools/server/index.js

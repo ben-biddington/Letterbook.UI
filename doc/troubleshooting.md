@@ -1,5 +1,40 @@
 ## Errors
 
+### Make: Error 193
+
+```
+$ make server-build
+process_begin: CreateProcess(C:\sauce\Letterbook.UI\letterbook-ui\scripts\server\build, ./letterbook-ui/scripts/server/build, ...) failed.
+make (e=193): Error 193
+make: \*\*\* [Makefile:23: server-build] Error 193
+```
+
+This happens on Windows if the script called from Makefile does not have `#!/bin/bash` at the top.
+
+### npx: Need to install the following packages
+
+```
+$ npx babel . --out-dir dist --extensions .'ts' --ignore node_modules dist
+Need to install the following packages:
+  babel@6.23.0
+Ok to proceed? (y)
+```
+
+Dear me:
+
+```
+$ npx --yes babel . --out-dir dist --extensions .'ts' --ignore node_modules dist
+npm WARN deprecated babel@6.23.0: In 6.x, the babel package has been deprecated in favor of babel-cli. Check https://opencollective.com/babel to support the Babel maintainers
+You have mistakenly installed the `babel` package, which is a no-op in Babel 6.
+Babel's CLI commands have been moved from the `babel` package to the `babel-cli` package.
+
+    npm uninstall babel
+    npm install --save-dev babel-cli
+
+See http://babeljs.io/docs/usage/cli/ for setup instructions.
+
+```
+
 ### Could not resolve dependency ... peer react@"^0.14.0 || ^15.0.0-0 || ^16.0.0 || ^17.0.0" from emoji-mart@3.0.1-j
 
 ```
