@@ -85,6 +85,42 @@ Tried this but it had no effect:
 const packPaths = sync(join(entryPath, extensionGlob), { posix: true });
 ```
 
+This gets further:
+
+```ts
+// config/webpack/shared.js
+packPaths = readdirSync(entryPath).map((it) => join(entryPath, it));
+```
+
+But then fails like:
+
+```
+ERROR in ./app/javascript/mastodon/components/badge.jsx 43:29-39
+"export 'ReactComponent' (imported as 'GroupsIcon') was not found in '@material-design-icons/svg/outlined/group.svg'
+    at HarmonyImportSpecifierDependency._getErrors (C:\sauce\Letterbook.UI\node_modules\webpack\lib\dependencies\HarmonyImportSpecifierDependency.js:109:11)
+    at HarmonyImportSpecifierDependency.getErrors (C:\sauce\Letterbook.UI\node_modules\webpack\lib\dependencies\HarmonyImportSpecifierDependency.js:68:16)
+    at Compilation.reportDependencyErrorsAndWarnings (C:\sauce\Letterbook.UI\node_modules\webpack\lib\Compilation.js:1463:22)
+    at C:\sauce\Letterbook.UI\node_modules\webpack\lib\Compilation.js:1258:10
+    at AsyncSeriesHook.eval [as callAsync] (eval at create (C:\sauce\Letterbook.UI\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at AsyncSeriesHook.lazyCompileHook (C:\sauce\Letterbook.UI\node_modules\webpack\node_modules\tapable\lib\Hook.js:154:20)
+    at Compilation.finish (C:\sauce\Letterbook.UI\node_modules\webpack\lib\Compilation.js:1253:28)
+    at C:\sauce\Letterbook.UI\node_modules\webpack\lib\Compiler.js:672:17
+    at _done (eval at create (C:\sauce\Letterbook.UI\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at eval (eval at create (C:\sauce\Letterbook.UI\node_modules\webpack\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:104:22)
+    at C:\sauce\Letterbook.UI\node_modules\webpack\lib\Compilation.js:1185:12
+    at C:\sauce\Letterbook.UI\node_modules\webpack\lib\Compilation.js:1097:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+ @ ./app/javascript/mastodon/features/account/components/header.jsx
+ @ ./app/javascript/mastodon/features/account_timeline/components/header.jsx
+ @ ./app/javascript/mastodon/features/account_timeline/containers/header_container.jsx
+ @ ./app/javascript/mastodon/features/account_timeline/index.jsx
+ @ ./app/javascript/mastodon/features/ui/util/async-components.js
+ @ ./app/javascript/mastodon/features/ui/index.jsx
+ @ ./app/javascript/mastodon/containers/mastodon.jsx
+ @ ./app/javascript/mastodon/main.jsx
+ @ ./app/javascript/packs/application.js
+```
+
 ### Problems with eslint
 
 Sometimes you get errors due to caching. For example, I installed `express` once, ran `make` but then reverted the `express` install.
