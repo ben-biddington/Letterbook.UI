@@ -38,6 +38,51 @@ make server-build
 
 ## Troubleshooting
 
+### Webpack does not build fully on Windows
+
+Aug-2023
+
+```
+make webpack
+```
+
+This does not build all the required files because of file globbing differences on Windows.
+
+```js
+// config/webpack/shared.js
+const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
+const entryPath = join(settings.source_path, settings.source_entry_path);
+const packPaths = sync(join(entryPath, extensionGlob));
+
+console.log({ entryPath, extensionGlob, packPaths });
+```
+
+Prints:
+
+```
+{
+  entryPath: 'app\\javascript\\packs',
+  extensionGlob: '**/*{.mjs,.js,.jsx,.ts,.tsx,.sass,.scss,.css,.module.sass,.module.scss,.module.css,.png,.svg,.gif,.jpeg,.jpg}*',
+  packPaths: []
+}
+```
+
+`packPaths` should not be empty, it should have these files in it:
+
+```
+$ ls app/javascript/packs
+admin.jsx  application.js  error.js  mailer.js  public-path.js  public.jsx  remote_interaction_helper.ts  share.jsx  sign_up.js  two_factor_authentication.js
+```
+
+Webpack has no entrypoints and as a result, `public/packs/manifest.json` is missing lots of entries.
+
+Tried this but it had no effect:
+
+```ts
+// config/webpack/shared.js
+const packPaths = sync(join(entryPath, extensionGlob), { posix: true });
+```
+
 ### Problems with eslint
 
 Sometimes you get errors due to caching. For example, I installed `express` once, ran `make` but then reverted the `express` install.
